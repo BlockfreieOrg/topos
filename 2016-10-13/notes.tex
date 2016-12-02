@@ -96,67 +96,61 @@
 \newtheorem{definition}[theorem]{Definition}
 \newenvironment{proof}{{\bf Proof:}}{\hfill\rule{2mm}{2mm}}
 
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\PSh}{\mathrm{PSh}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\Set}{\mathbf{Set}}
+
 \begin{document}
 \lecture{3}{13 October}{David Spivak}
 \\
-\section{Yonda Embedding}
+\section{Yoneda Embedding}
 
-For a locally small category a presheaf is a functor from
-$C^{op} \rightarrow \mathbf{Set} $.
+For a locally small category, a presheaf is a functor from
+$C^\op \rightarrow \Set $.
 The category of presheaves on $C$ is a
-category consisting of objects being functors
-$C^{op} \rightarrow \mathbf{Set} $
-and morphism being natural transformations between these functors.
+category whose objects are functors
+$C^\op \rightarrow \Set $
+and whose morphisms are natural transformations between these functors:
+$$\PSh(C):=[C^\op,\Set]$$
 
-$$PSh(C):=[C^{op},Set]$$
+The Yoneda embedding of $C$ is a functor from $C$ to the category of presheaves
+$$Y: C \rightarrow \PSh(C) $$
+which sends an object $d$ to the contravariant functor $\Hom(-, d)$:
+$$ Y(d)(c) = \Hom(c,d). $$
 
-The yoneda embedding of $C$ is the functor from $C$ to the category of presheaves.
-
-$$ Y: C \rightarrow PSh(C) $$
-
-This embedding sends an object $d$ to the covariant functor $Hom(d,-)$.
-
-$$ Y(c)(d) = Hom(d,c) $$
-
-A functor :
-
-$$ F : C^{op} \rightarrow \mathbf{Set} $$
-
-is a representable functor if it is naturally isomorphic to $Hom_{c}(d,-)$ from some $d \in C$.
-
-$$ F(d) \cong Hom_{c}(d,-)$$
-
-Yonada lemma gives an isomorphism of the functor $F$ to the presheaves of $C$.
-
-$$ F(d) \cong Hom_{PSh(C)}(Y(d),F)$$
+The Yoneda lemma gives an isomorphism between the sections of a presheaf $F$ at an object $d$ and the natural transformations from the Yoneda embedding of $d$ to $F$:
+$$ F(d) \cong \Hom_{\PSh(C)}(Y(d),F)$$
 
 \section{Representable Functors}
 
+A functor
+$$ F : C^{op} \rightarrow \mathbf{Set} $$
+is a representable functor if it is naturally isomorphic to $\Hom_{C}(d,-)$ from some $d \in C$,
+$$ F \cong \Hom_{C}(d,-).$$
+
 %% http://mysite.science.uottawa.ca/phofstra/MAT5147/presheaves.pdf
 
-It follows from the definition that presheaf is representable if it
+It follows from the definition that a presheaf is representable if it
 can be expressed as something in the image of the Yoneda embedding.
 
-$$ Y(c) : c \in C $$
-
-For the following topos lets determine how many representables are
+For the following topos, let's determine how many representables are
 each topos.
 
 \begin{ex}
-Lets consider the representive of a presheaf of the category of a
-single point set $\star$.
-
-$$Psh(\star)  \equiv \mathbf{Set}$$
+Let's consider the representables of a presheaf of the category $\star$, which has a single object and only the identity morphism.
+$$\PSh(\star)  \equiv \mathbf{Set}$$
 \end{ex}
 
 
-The above equivalence can be observed by considering an arbitary set $B$
+The above equivalence can be observed by considering an arbitrary set $B$
 and the set of mappings from $\star$.
 
-$$Hom(\star,B) \cong B $$
+%There seems to be some conflation of the one-object category, the one-element set here, and the object of the one-element category here.
+$$\Hom(\star,B) \cong B $$
 
-For this category is must be yoneda of star $Y(\star)$.
-$$Y(\star) = Hom(-,\star)$$
+For this category, the only representable is $Y(\star)$.
+$$Y(\star) = \Hom(-,\star)$$
 As the category only has one element $\star$.
 $$ = H (\star,\star) $$
 The maps in this set is just the identity.
@@ -174,13 +168,13 @@ Thus it is just a point.\\
 \end{figure}
 
 \begin{ex}
-Let consider the representative of a two point $A,B$ category:
-$$Psh(A \cdot \: \cdot B ) \equiv \mathbf{Set} \times \mathbf{Set} $$
+Let's consider the representables of a two point $A,B$ category:
+$$\PSh(A \cdot \: \cdot B ) \equiv \mathbf{Set} \times \mathbf{Set} $$
 \end{ex}
-The representatives are given by
-$$Y(A)=Hom(-,A)=Hom(A,A)=id_{A}$$
-$$Y(B)=Hom(-,B)=Hom(B,B)=id_{B}$$
-Thus the representatives are just is just two points.\\
+The representables are given by
+$$Y(A)=\Hom(-,A)=\Hom(A,A)=id_{A}$$
+$$Y(B)=\Hom(-,B)=\Hom(B,B)=id_{B}$$
+Thus the representables are just two points.\\
 
 \begin{figure}[!h]
   \centering
@@ -200,13 +194,13 @@ Thus the representatives are just is just two points.\\
 
 \begin{ex}
 Building on the previous example by adding $f : A \rightarrow B$ lets
-consider the representatives of the "function" category.
+consider the representables of the "function" category.
 $Psh(A \cdot A  \rightarrow \cdot B )   \equiv \mbox{"functions"}$\\
 \end{ex}
-The representatives are given by $Y(A)$,$Y(B)$.
+The representables are given by $Y(A)$,$Y(B)$.
 $$Y(A)=Hom(-,A)=Hom(\{A,B,f\},A)=\{id_{A},\{\},id_{A} \rightarrow \{\} \}$$
 $$Y(B)=Hom(-,B)=Hom(\{A,B,f\},B)=\{f,\{\},id_{B},f \rightarrow id_{B} \}$$
-The second representative has:
+The second representable has:
 
 \begin{figure}[!h]
   \centering
@@ -249,9 +243,9 @@ the arrows to be the source and another to be the target.\\
   E
 \end{tikzcd}
 \end{figure}
-The representatives are given by $Y(V)$,$Y(E)$. Lets consider the first.
+The representables are given by $Y(V)$,$Y(E)$. Lets consider the first.
 $$Y(V)=Hom(-,V)=Hom(V,V)=I_{V}$$
-Which is just a single point.  For the second representative there are
+Which is just a single point.  For the second representables there are
 two hom sets to consider.
 $$Y(E)=Hom(-,E)=\{s,t,I_{E}\}$$
 The representables are given below.
@@ -539,7 +533,7 @@ such that the following diagram commutes.
 \section{Subobject classifier}
 
 The subset relation $A \subset B$ can be
-charatersized in two manners.
+charaterized in two manners.
 
 The first is by a monic $m : A \rightarrow B$ which is
 an inclusion.
